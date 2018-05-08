@@ -23,7 +23,7 @@ void AskString()
 	{
 		AskString();
 	}
-	queue.push(input);
+	stack.push(input);
 }
 void AutomaticInput()
 {
@@ -39,17 +39,23 @@ void AutomaticInput()
 }
 void Print()
 {
-	/*std::stack<std::string> reversestack;*/
+	std::stack<std::string> reversestack;
 	while(!queue.empty())
 	{
 		printf("%s\n", queue.front().c_str());
 		queue.pop();
 	}
-	/*while (!reversestack.empty())
+
+	while(!stack.empty())
+	{
+		reversestack.push(stack.top());
+		stack.pop();
+	}
+	while (!reversestack.empty())
 	{
 		printf("%s\n", reversestack.top().c_str());
 		reversestack.pop();
-	}*/
+	}
 
 }
 
@@ -59,7 +65,8 @@ int main()
 {
 	queue.empty();
 	auto t1 = std::chrono::high_resolution_clock::now();
-	AutomaticInput();
+	/*AutomaticInput();*/
+	AskString();
 	Print();
 	auto t2 = std::chrono::high_resolution_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
